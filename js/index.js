@@ -94,7 +94,7 @@ function getFooterItems() {
 ===========================*/
 
 populateNavigation()
-
+populateCta()
 
 /*===========================
           Helpers
@@ -109,4 +109,28 @@ function populateNavigation() {
   })
 
   logoImg.src = siteContent.nav['img-src']
+}
+
+function populateCta() {
+  const { cta, ctaHeader, ctaButton, ctaImg } = getCTAItems() 
+  const { h1: h1Content, button: buttonContent } = siteContent.cta
+  const imgSrc = siteContent.cta['img-src']
+
+  // doesn't quite work, hmm... (bookmark)
+  // ctaHeader.innerHTML = h1Content.split(' ').join(document.createElement('br'))
+
+  const [ dom, is, awesome ] = h1Content.split(' ')
+
+  ctaHeader.innerHTML = dom
+  ctaHeader.appendChild(lineBreak())
+  ctaHeader.innerHTML += is 
+  ctaHeader.appendChild(lineBreak())
+  ctaHeader.innerHTML += awesome 
+  
+  ctaImg.src = imgSrc
+  ctaButton.textContent = buttonContent
+}
+
+function lineBreak() {
+  return document.createElement('br')
 }
