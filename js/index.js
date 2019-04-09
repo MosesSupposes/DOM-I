@@ -93,9 +93,20 @@ function getFooterItems() {
           Main
 ===========================*/
 
-
+populateNavigation()
 
 
 /*===========================
           Helpers
 ===========================*/
+
+function populateNavigation() {
+  const { nav, logoImg } = getNavItems()
+  const navItems = Object.values(siteContent.nav)
+
+  ;[...nav.querySelectorAll('a')].forEach((anchor, i) => {
+    anchor.textContent = navItems[i]
+  })
+
+  logoImg.src = siteContent.nav['img-src']
+}
