@@ -97,6 +97,7 @@ populateNavigation()
 populateCta()
 populateMainContent()
 
+
 /*===========================
           Helpers
 ===========================*/
@@ -136,6 +137,7 @@ function populateMainContent() {
   populateTopContent()
   populateBottomContent()
   populateImgMiddle()
+  populateContactSection()
 }
 
 function populateBottomContent() {
@@ -168,6 +170,15 @@ function populateImgMiddle() {
   imgMiddle = document.getElementById('middle-img')
   imgMiddle.src = siteContent["main-content"]["middle-img-src"]
 }
+
+function populateContactSection() {
+  const contact = document.querySelector('.contact')
+  contact.children[0].textContent = siteContent["contact"]["contact-h4"]
+  contact.children[1].textContent = siteContent["contact"]["address"]
+  contact.children[2].textContent = siteContent["contact"]["phone"]
+  contact.children[3].textContent = siteContent["contact"]["email"]
+}
+
 
 function lineBreak() {
   return document.createElement('br')
