@@ -37,6 +37,65 @@ const siteContent = {
   },
 };
 
-// Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+// elements to operate on 
+function getNavItems() {
+  return {
+    nav: document.querySelector('nav'),
+    logoImg: document.querySelector('#logo-img')
+  }
+}
+
+function getCTAItems() {
+  const cta = document.querySelector('.cta')
+
+  return {
+    cta,
+    ctaHeader: cta.querySelector('h1'),
+    ctaButton: cta.querySelector('button'),
+    ctaImg: cta.querySelector('img')
+  }
+}
+
+function getMainContent() {
+    const mainContent = document.querySelector('.main-content')
+    
+    return {
+      mainContent,
+      topContent: mainContent.querySelector('.top-content'),
+      bottomContent: mainContent.querySelector('.bottom-content')
+    }
+}
+
+function getContactItems() {
+  const contact = document.querySelector('.contact')
+
+  return {
+    contact,
+    contactHeader: contact.querySelector('h4'),
+    contactP1: contact.querySelector('p:nth-child(1)'),
+    contactP2: contact.querySelector('p:nth-child(2)'),
+    contactP3: contact.querySelector('p:nth-child(3)')
+  }
+}
+
+
+function getFooterItems() {
+  const footer = document.querySelector('footer')
+
+  return {
+    footer,
+    copyright: footer.querySelector('p')
+  }
+}
+
+
+/*===========================
+          Main
+===========================*/
+
+
+
+
+/*===========================
+          Helpers
+===========================*/
