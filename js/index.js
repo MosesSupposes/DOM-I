@@ -37,6 +37,156 @@ const siteContent = {
   },
 };
 
-// Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+// elements to operate on 
+function getNavItems() {
+  return {
+    nav: document.querySelector('nav'),
+    logoImg: document.querySelector('#logo-img')
+  }
+}
+
+function getCTAItems() {
+  const cta = document.querySelector('.cta')
+
+  return {
+    cta,
+    ctaHeader: cta.querySelector('h1'),
+    ctaButton: cta.querySelector('button'),
+    ctaImg: cta.querySelector('img')
+  }
+}
+
+function getMainContent() {
+    const mainContent = document.querySelector('.main-content')
+    
+    return {
+      mainContent,
+      topContent: mainContent.querySelector('.top-content'),
+      bottomContent: mainContent.querySelector('.bottom-content')
+    }
+}
+
+function getContactItems() {
+  const contact = document.querySelector('.contact')
+
+  return {
+    contact,
+    contactHeader: contact.querySelector('h4'),
+    contactP1: contact.querySelector('p:nth-child(1)'),
+    contactP2: contact.querySelector('p:nth-child(2)'),
+    contactP3: contact.querySelector('p:nth-child(3)')
+  }
+}
+
+
+function getFooterItems() {
+  const footer = document.querySelector('footer')
+
+  return {
+    footer,
+    copyright: footer.querySelector('p')
+  }
+}
+
+
+/*===========================
+          Main
+===========================*/
+
+populateNavigation()
+populateCta()
+populateMainContent()
+populateFooterContent()
+
+
+/*===========================
+          Helpers
+===========================*/
+
+function populateNavigation() {
+  const { nav, logoImg } = getNavItems()
+  const navItems = Object.values(siteContent.nav)
+
+  ;[...nav.querySelectorAll('a')].forEach((anchor, i) => {
+    anchor.textContent = navItems[i]
+  })
+
+  logoImg.src = siteContent.nav['img-src']
+}
+
+function populateCta() {
+  const { cta, ctaHeader, ctaButton, ctaImg } = getCTAItems() 
+  const { h1: h1Content, button: buttonContent } = siteContent.cta
+  const imgSrc = siteContent.cta['img-src']
+
+  // doesn't quite work, hmm... (bookmark)
+  // ctaHeader.innerHTML = h1Content.split(' ').join(document.createElement('br'))
+
+  const [ dom, is, awesome ] = h1Content.split(' ')
+
+  ctaHeader.innerHTML = dom
+  ctaHeader.appendChild(lineBreak())
+  ctaHeader.innerHTML += is 
+  ctaHeader.appendChild(lineBreak())
+  ctaHeader.innerHTML += awesome 
+  
+  ctaImg.src = imgSrc
+  ctaButton.textContent = buttonContent
+}
+
+function populateMainContent() {
+  populateTopContent()
+  populateBottomContent()
+  populateImgMiddle()
+  populateContactSection()
+  populateFooterContent()
+}
+
+function populateBottomContent() {
+  const { bottomContent } = getMainContent()
+  bottomContentH4s = bottomContent.querySelectorAll('h4')
+  bottomContentH4s[0].textContent = siteContent["main-content"]["services-h4"]
+  bottomContentH4s[1].textContent = siteContent["main-content"]["product-h4"]
+  bottomContentH4s[2].textContent = siteContent["main-content"]["vision-h4"]
+
+  bottomContentPs = bottomContent.querySelectorAll('p')
+  bottomContentPs[0].textContent = siteContent["main-content"]["services-content"]
+  bottomContentPs[1].textContent = siteContent["main-content"]["product-content"]
+  bottomContentPs[2].textContent = siteContent["main-content"]["vision-content"]
+}
+
+
+function populateTopContent() {
+  const { topContent } = getMainContent()
+  topContentH4s = topContent.querySelectorAll('h4')
+  topContentH4s[0].textContent = siteContent["main-content"]["features-h4"]
+  topContentH4s[1].textContent = siteContent["main-content"]["about-h4"]
+
+  topContentPs = topContent.querySelectorAll('p')
+  topContentPs[0].textContent = siteContent["main-content"]["features-content"]
+  topContentPs[1].textContent = siteContent["main-content"]["about-content"]
+}
+
+
+function populateImgMiddle() {
+  imgMiddle = document.getElementById('middle-img')
+  imgMiddle.src = siteContent["main-content"]["middle-img-src"]
+}
+
+function populateContactSection() {
+  const contact = document.querySelector('.contact')
+  contact.children[0].textContent = siteContent["contact"]["contact-h4"]
+  contact.children[1].textContent = siteContent["contact"]["address"]
+  contact.children[2].textContent = siteContent["contact"]["phone"]
+  contact.children[3].textContent = siteContent["contact"]["email"]
+}
+
+function populateFooterContent() {
+  const copyright = document.querySelector('footer p')
+  copyright.textContent = siteContent["footer"]["copyright"]
+}
+
+
+function lineBreak() {
+  return document.createElement('br')
+}
