@@ -96,6 +96,7 @@ function getFooterItems() {
 populateNavigation()
 populateCta()
 populateMainContent()
+populateFooterContent()
 
 
 /*===========================
@@ -138,6 +139,7 @@ function populateMainContent() {
   populateBottomContent()
   populateImgMiddle()
   populateContactSection()
+  populateFooterContent()
 }
 
 function populateBottomContent() {
@@ -177,6 +179,11 @@ function populateContactSection() {
   contact.children[1].textContent = siteContent["contact"]["address"]
   contact.children[2].textContent = siteContent["contact"]["phone"]
   contact.children[3].textContent = siteContent["contact"]["email"]
+}
+
+function populateFooterContent() {
+  const copyright = document.querySelector('footer p')
+  copyright.textContent = siteContent["footer"]["copyright"]
 }
 
 
