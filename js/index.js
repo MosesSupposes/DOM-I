@@ -95,6 +95,7 @@ function getFooterItems() {
 
 populateNavigation()
 populateCta()
+populateMainContent()
 
 /*===========================
           Helpers
@@ -129,6 +130,43 @@ function populateCta() {
   
   ctaImg.src = imgSrc
   ctaButton.textContent = buttonContent
+}
+
+function populateMainContent() {
+  populateTopContent()
+  populateBottomContent()
+  populateImgMiddle()
+}
+
+function populateBottomContent() {
+  const { bottomContent } = getMainContent()
+  bottomContentH4s = bottomContent.querySelectorAll('h4')
+  bottomContentH4s[0].textContent = siteContent["main-content"]["services-h4"]
+  bottomContentH4s[1].textContent = siteContent["main-content"]["product-h4"]
+  bottomContentH4s[2].textContent = siteContent["main-content"]["vision-h4"]
+
+  bottomContentPs = bottomContent.querySelectorAll('p')
+  bottomContentPs[0].textContent = siteContent["main-content"]["services-content"]
+  bottomContentPs[1].textContent = siteContent["main-content"]["product-content"]
+  bottomContentPs[2].textContent = siteContent["main-content"]["vision-content"]
+}
+
+
+function populateTopContent() {
+  const { topContent } = getMainContent()
+  topContentH4s = topContent.querySelectorAll('h4')
+  topContentH4s[0].textContent = siteContent["main-content"]["features-h4"]
+  topContentH4s[1].textContent = siteContent["main-content"]["about-h4"]
+
+  topContentPs = topContent.querySelectorAll('p')
+  topContentPs[0].textContent = siteContent["main-content"]["features-content"]
+  topContentPs[1].textContent = siteContent["main-content"]["about-content"]
+}
+
+
+function populateImgMiddle() {
+  imgMiddle = document.getElementById('middle-img')
+  imgMiddle.src = siteContent["main-content"]["middle-img-src"]
 }
 
 function lineBreak() {
